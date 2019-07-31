@@ -1,13 +1,18 @@
 <div class="container">
 
-  <input type="search">
+  <form class="search" #formSearch="ngForm">
+    <input
+      type="search"
+      name="searchField"
+      [(ngModel)]="searchField"
+      (ngModelChange)="onSearch()"
+    >
+  </form>
 
-  <div class="comment">
-
+  <div class="comment" *ngIf="!serchMode; else serchModeOn">
     <div class="title">
       <p>Some interesting Post!!!</p>
     </div>
-
     <div class="action">
         <textarea
           placeholder="Comment this post ..."
@@ -16,8 +21,15 @@
       <button (click)="onSubmit()">Send</button>
     </div>
 
-
     <app-comment [comments]="comments"></app-comment>
   </div>
 
+  <ng-template #serchModeOn>
+    <h2 *ngIf="!filteredComments.length">
+      No comment found with this title
+    </h2>
+    <div class="title" *ngFor="let commentTitle of filteredComments">
+      <p>{{ commentTitle }}</p>
+    </div>
+  </ng-template>
 </div>

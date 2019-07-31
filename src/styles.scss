@@ -2,13 +2,13 @@
 
 :root {
   --primary-color: #0683eb;
-  --home-color: #cdcdcd;
+  --home-color: #3f9185;
   --light-color: #f2f2f2;
   --danger-color: crimson;
-  --grey-color: rgba(149, 149, 149, 0.45);
-  --grey-hover-color: rgba(158, 158, 158, 0.45);
-  --grey-active-color: rgba(119, 119, 119, 0.45);
-  --disabled-color: rgba(86, 86, 86, 0.63);
+  --grey-color: rgba(173, 173, 173, 0.45);
+  --grey-hover-color: rgba(179, 179, 179, 0.72);
+  --grey-active-color: rgba(132, 132, 132, 0.76);
+  --disabled-color: rgba(116, 116, 116, 0.63);
 }
 
 * {
@@ -22,7 +22,7 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   background: var(--home-color);
-  color: var(--dark-color);
+  color: var(--light-color);
 }
 
 ul {
@@ -51,7 +51,7 @@ button {
 
   &[disabled] {
     cursor: not-allowed;
-    color: var(--disabled-color);
+    color: var(--grey-hover-color);
     background-color: var(--disabled-color);
 
     &:hover {
@@ -65,6 +65,20 @@ button {
 
   &:active {
     background-color: var(--grey-active-color);
+  }
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+
+  & input {
+    padding: 10px 15px;
+    width: 300px;
+    outline: none;
+    border: 1px solid var(--grey-color);
+    border-radius: 3px;
   }
 }
 

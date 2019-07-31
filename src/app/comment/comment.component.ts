@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {MyComment} from '../comment.model';
+import { Component, Input } from '@angular/core';
+
+import { MyComment } from '../comment.model';
 
 @Component({
   selector: 'app-comment',
@@ -17,6 +18,7 @@ export class CommentComponent {
   onSubmit(comment: MyComment, form) {
     if (form.valid) {
       comment.comments.unshift(new MyComment(form.value.title, []));
+      form.reset();
     }
   }
 

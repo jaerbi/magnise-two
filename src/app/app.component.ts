@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {MyComment} from './comment.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { MyComment } from './comment.model';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,14 @@ import {MyComment} from './comment.model';
 })
 export class AppComponent implements OnInit {
 
-  comments: Array<{}>;
+  @ViewChild('formSearch', { static: true }) searchForm: NgForm;
+
+  comments: MyComment[];
+  filterComments = [];
+  filteredComments = [];
+  serchMode = false;
   postComment: string;
+  searchField: string;
 
   ngOnInit(): void {
     this.comments = [
@@ -28,12 +36,39 @@ export class AppComponent implements OnInit {
       ]),
       new MyComment('Comment 4', []),
     ];
+  }
 
+  /**
+   * Search comment
+   */
+  onSearch() {
+    const searchField = this.searchForm.value.searchField.toLowerCase();
+
+    if (!searchField) {
+      this.serchMode = false;
+    } else {
+      this.serchMode = true;
+
+      this.filteredComments = this.filterComments.filter((title) => {
+        return title.toLowerCase().includes(searchField);
+      });
+
+      this.findComment(this.comments);
+    }
+
+  }
+
+  findComment(comments) {
+    comments.forEach((comment) => {
+      if (comment.comments.length) {
+        this.findComment(comment.comments);
+      }
+      this.filterComments.push(comment.title);
+    });
   }
 
   onSubmit() {
     this.comments.unshift(new MyComment(this.postComment, []));
+    this.postComment = '';
   }
-
-
 }
