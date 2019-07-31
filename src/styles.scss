@@ -49,7 +49,7 @@ button {
   outline: none;
   cursor: pointer;
 
-  &[disabled] {
+  &[disabled], &.disabled {
     cursor: not-allowed;
     color: var(--grey-hover-color);
     background-color: var(--disabled-color);

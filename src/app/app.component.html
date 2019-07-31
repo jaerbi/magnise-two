@@ -18,7 +18,10 @@
           placeholder="Comment this post ..."
           [(ngModel)]="postComment"
         ></textarea>
-      <button (click)="onSubmit()">Send</button>
+      <button
+        [ngClass]="{ 'disabled': !postComment }"
+        (click)="onSubmit()"
+      >Send</button>
     </div>
 
     <app-comment [comments]="comments"></app-comment>
