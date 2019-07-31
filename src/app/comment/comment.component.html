@@ -7,13 +7,21 @@
         <button (click)="onDelete(i)">Delete</button>
       </div>
 
-      <div class="action">
-        <textarea
-          placeholder="Comment this comment ..."
-          ngModel
-        ></textarea>
-        <button (click)="onSubmit(comment)">Send</button>
-      </div>
+      <form  #form="ngForm">
+        <div class="action">
+          <textarea
+            placeholder="Comment this comment ..."
+            ngModel
+            name="title"
+            required
+          ></textarea>
+
+          <button
+            [disabled]="!form.valid"
+            (click)="onSubmit(comment, form)"
+          >Send</button>
+        </div>
+      </form>
 
       <!-- Sub comment -->
       <app-comment [comments]="comment.comments" *ngIf="comment.comments"></app-comment>

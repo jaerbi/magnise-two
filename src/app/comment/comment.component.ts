@@ -9,14 +9,15 @@ import {MyComment} from '../comment.model';
 export class CommentComponent {
 
   @Input() comments: MyComment[];
-  title: string;
 
   /**
    * Create new sub comment
    * @param MyComment comment
    */
-  onSubmit(comment: MyComment) {
-    comment.comments.unshift(new MyComment(this.title, []));
+  onSubmit(comment: MyComment, form) {
+    if (form.valid) {
+      comment.comments.unshift(new MyComment(form.value.title, []));
+    }
   }
 
   /**
