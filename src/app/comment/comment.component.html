@@ -1,0 +1,23 @@
+<div class="comment" *ngFor="let comment of comments;let i = index">
+  <ul>
+    <li>
+
+      <div class="title">
+        <p>{{ comment.title }}</p>
+        <button (click)="onDelete(i)">Delete</button>
+      </div>
+
+      <div class="action">
+        <textarea
+          placeholder="Comment this comment ..."
+          ngModel
+        ></textarea>
+        <button (click)="onSubmit(comment)">Send</button>
+      </div>
+
+      <!-- Sub comment -->
+      <app-comment [comments]="comment.comments" *ngIf="comment.comments"></app-comment>
+
+    </li>
+  </ul>
+</div>
