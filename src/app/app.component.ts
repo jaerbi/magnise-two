@@ -68,7 +68,9 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    this.comments.unshift(new MyComment(this.postComment, []));
-    this.postComment = '';
+    if (this.postComment) {
+      this.comments.unshift(new MyComment(this.postComment, []));
+      this.postComment = '';
+    }
   }
 }
