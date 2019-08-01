@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
   @ViewChild('formSearch', { static: true }) searchForm: NgForm;
 
   comments: MyComment[];
-  filterComments: Array;
-  filteredComments: Array;
+  filterComments = [];
+  filteredComments = [];
   serchMode = false;
   postComment: string;
   searchField: string;
@@ -49,8 +49,6 @@ export class AppComponent implements OnInit {
     } else {
       this.serchMode = true;
       this.filterComments = [];
-      this.filteredComments = [];
-
       this.findComment(this.comments);
       this.filteredComments = this.filterComments.filter((title) => {
         return title.toLowerCase().includes(searchField);
